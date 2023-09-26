@@ -46,7 +46,7 @@ const Meals = () => {
 
   return (
     <div className='min-h-screen flex flex-col gap-8'>
-      <div className='bg-slate-200' id='meal-intro'>
+      <div className='bg-slate-200 m-4' id='meal-intro'>
         <div className=''>
           <span id='category-name' className='font-semibold'>{category}</span>
           <p className=''>

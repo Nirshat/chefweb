@@ -12,9 +12,9 @@ const Header = () => {
         <span className="text-orange-500">Web</span>
       </div>
 
-      <div className="flex flex-wrap gap-3 text-slate-300">
-        <span>GitHub</span>
-        <span>Facebook</span>
+      <div className="flex flex-wrap gap-3 text-slate-300 text-2xl cursor-pointer">
+        <span> <i className="fa-brands fa-github"></i></span>
+        <span> <i className="fa-brands fa-facebook"></i></span>
       </div>
     </div>
   )
