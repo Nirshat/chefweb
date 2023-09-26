@@ -1,0 +1,22 @@
+
+#youtube, #thumb{
+  height:16rem;
+}
+
+
+@media only screen and (min-width:767px){
+  #thumb{
+    height:26rem;
+  }
+}
+
+@media only screen and (min-width:1024px){
+  #youtube{
+    height:24rem;
+    width:80%;
+  }
+
+  #thumb{
+    height:26rem;
+  }
+}
