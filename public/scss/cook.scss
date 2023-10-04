@@ -3,14 +3,47 @@
   height:16rem;
 }
 
+.padds{
+  padding:.7rem;
+}
+
+.firstbox{
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredients{
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+}
+
 
 @media only screen and (min-width:767px){
+  .padds{
+    padding:1rem;
+  }
+
   #thumb{
     height:26rem;
+  }
+
+  .firstbox{
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap:3rem;
+  }
+
+  .ingredients{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
   }
 }
 
 @media only screen and (min-width:1024px){
+  .padds{
+    padding:1.5rem;
+  }
+
   #youtube{
     height:24rem;
     width:80%;

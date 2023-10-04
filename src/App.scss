@@ -4,6 +4,7 @@
   background-image: url('../public/assets/meal9.jpg');
   background-size:cover;
   background-repeat: no-repeat;
+  padding:5rem 1rem;
 }
 
 // #headerbox{
@@ -13,75 +14,83 @@
 //   padding:1rem;
 // }
 
-#searchbar{
-  width:90%;
+#searchbox{
+  display:grid;
+  grid-template-columns: 1fr auto;
 }
+
 
 #tagline{
-  font-size:38px;
+  font-size:28px;
 }
 
+.categories-box{
+  padding:.6rem;
+}
 #categories{
-  display: grid;
+  display:grid;
   grid-template-columns: repeat(2, 1fr);
-  gap:1rem;
   justify-content: center;
-  text-align: center;
+  gap:1rem;
 }
 
 #category-box{
   transition:.3s;
-  padding:.9rem;
+  display:flex;
+  flex-direction: column;
+}
+
+#tag{
+  width: max-content;
+  padding:1px .5rem;
+  margin-bottom:-1rem;
+  z-index:1;
+  margin-left:auto;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 #headerbox{
   padding:1rem 1rem;
 }
 
-// #desc {
-//   width: 14em;
-//   text-align:center;
-//   max-height: 3em;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   white-space: pre-line;
-// }
-
-
-#desc{
-  width:14em;
-  max-height:4em;
-  overflow-y:auto;
-  overflow-x: hidden;
-  text-align:center;
-}
 
 #footerbox{
   padding:3rem 1rem;
   display: flex;
   flex-direction: column;
   gap:1.5rem;
-}
 
+  .footlogo{
+    font-size:28px;
+  }
+}
 
 
 
 // tablet & iPad
 @media only screen and (min-width:767px){
+  #home-bg{
+    padding:8rem 1rem;
+  }
+
+  .categories-box{
+    padding:1.5rem;
+  }
+  #categories{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
 
   #tagline{
-    font-size:44px;
+    font-size:28px;
   }
 
-  #searchbar{
-    width: 70%;
+  #hide{
+    display: block;
   }
 
-  #categories{
-    display: flex;
-    flex-wrap: wrap;
-    gap:1rem;
-  }
   
   #footerbox{
     padding:3rem 1.5rem;
@@ -89,6 +98,9 @@
     flex-direction: row;
     justify-content: space-between;
     gap:2rem;
+    .footlogo{
+      font-size:30px;
+    }
   }
 }
 
@@ -99,24 +111,19 @@
   #headerbox{
     padding:1.2rem 3rem;
   }
-  #searchbar{
-    width:100%;
-  }
 
   #categories{
-    display: flex;
-    flex-wrap: wrap;
-    gap:1rem;
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
   }
-
-  #category-box{
-    padding:2rem;
-  }
-  
 
   #footerbox{
     padding:3rem 8rem;
     display: flex;
     justify-content: space-between;
+
+    .footlogo{
+      font-size:32px;
+    }
   }
 }
