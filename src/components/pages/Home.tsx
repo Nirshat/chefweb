@@ -4,6 +4,7 @@ import Result from "../others/Result";
 import axios from "axios";
 import useResultStore from "../../stores/useResultStore";
 import '../../../public/scss/loader.scss'
+import useEndpoint from "../../stores/useApiEndpoint";
 
 const Home = () => {
   const [searching, setSearching] = useState("");
@@ -11,7 +12,7 @@ const Home = () => {
   const contents = [<Carousel />, <Result />];
   const [content, setContent] = useState(0);
 
-  const endpoint = import.meta.env.VITE_THEMEALDB_URL;
+  const {endpoint} = useEndpoint();
   const searchApiCall = async () => {
     try {
       setLoading(true);

@@ -1,15 +1,34 @@
-import { useEffect, /*useState*/ } from "react";
-import fetchCategories from "../../api-services/categories";
+import { useEffect } from "react";
 import useCategories from "../../stores/useCategories";
 import useFiltered from "../../stores/useFiltered";
 import usePages from "../../stores/usePages";
-
+import axios from 'axios'
+import useEndpoint from "../../stores/useApiEndpoint";
+import useLoading from "../../stores/useLoading";
 
 
 const Carousel = () => {
   const { categories, fetch } = useCategories();
   const { updateCategory, updatePaliwanag, updateCover } = useFiltered();
   const { updatePage } = usePages();
+  const {endpoint} = useEndpoint();
+  const {setLoading} = useLoading();
+
+  const fetchCategories = async() => {
+    try{
+      setLoading(true);
+      const {data} = await axios.get(`${endpoint}` + "categories.php");
+      return data.categories;
+    }
+    catch(error){
+      console.log("API Call Failed!");
+    }
+    finally{
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
+  }
 
   useEffect(() => {
     const callCategories = async () => {
@@ -19,7 +38,6 @@ const Carousel = () => {
     };
     callCategories();
   }, []);
-  // categories.map(m => console.log(m.strCategory));
 
   const filteredMeals = (data1: string, data2: string, data3: string) => {
     updateCategory(data1);

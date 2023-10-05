@@ -2,17 +2,27 @@ import "../../../public/scss/cook.scss";
 import { useEffect } from "react";
 import axios from "axios";
 import useCook from "../../stores/useCook";
+import useEndpoint from "../../stores/useApiEndpoint";
+import useLoading from "../../stores/useLoading";
+import '../../../public/scss/loader.scss'
+
 
 const Cook = () => {
   const { id, infos, updateInfos } = useCook();
-  const endpoint = import.meta.env.VITE_THEMEALDB_URL;
+  const { endpoint } = useEndpoint();
+  const { loading, setLoading } = useLoading();
 
   const fetchFiltered = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(`${endpoint}lookup.php?i=${id}`);
       return data.meals[0];
     } catch (error) {
       console.log("API CALL FAILED");
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     }
   };
 
@@ -118,56 +128,81 @@ const Cook = () => {
   );
 
   return (
-    <div className="min-h-screen flex flex-col gap-8 padds">
-      <div className="firstbox">
-        <div className="">
-          <img className="rounded" id="thumb" src={infos.strMealThumb} />
+    <>
+      {loading === true ? (
+        <div className="box-border min-h-screen flex flex-col justify-center items-center">
+          <section className="dots-container">
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+          </section>
         </div>
+      ) : (
+        <div className="min-h-screen flex flex-col gap-8 padds">
+          <div className="firstbox">
+            <div className="">
+              <img className="rounded" id="thumb" src={infos.strMealThumb} />
+            </div>
 
-        <div className="flex flex-col gap-3">
-          <div className="font-bold text-3xl text-blue-700 border-b border-blue-900 py-3">
-            {infos.strMeal}
-          </div>
-          <div className="flex flex-col uppercase gap-1">
-            <span><b className="font-semibold">CATEGORY:</b> {infos.strCategory}</span>
-            <span><b className="font-semibold">ORIGIN:</b> {infos.strArea}</span>
-            {infos.strTags !== "" && infos.strTags !== null ? (
-              <div className="flex flex-row gap-2">
-                <span className="font-semibold">{infos.strTags.split(",").length > 1 ? "TAGS:" : "TAG:" }</span>
-                <div className="flex flex-row gap-2">
-                  {infos.strTags.split(",").map((tag, index) => (
-                    <span className="border-1 border-blue-900 px-1 text-sm" key={index}>{tag}</span>
+            <div className="flex flex-col gap-3">
+              <div className="font-bold text-3xl text-blue-700 border-b border-blue-900 py-3">
+                {infos.strMeal}
+              </div>
+              <div className="flex flex-col uppercase gap-1">
+                <span>
+                  <b className="font-semibold">CATEGORY:</b> {infos.strCategory}
+                </span>
+                <span>
+                  <b className="font-semibold">ORIGIN:</b> {infos.strArea}
+                </span>
+                {infos.strTags !== "" && infos.strTags !== null ? (
+                  <div className="flex flex-row gap-2">
+                    <span className="font-semibold">
+                      {infos.strTags.split(",").length > 1 ? "TAGS:" : "TAG:"}
+                    </span>
+                    <div className="flex flex-row gap-2">
+                      {infos.strTags.split(",").map((tag, index) => (
+                        <span
+                          className="border-1 border-blue-900 px-1 text-sm"
+                          key={index}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+              <div className="flex flex-col gap-2 bg-blue-900 text-slate-100 p-3">
+                <span className="font-semibold text-lg">Ingredients:</span>
+                <div className="ingredients">
+                  {avoidnulls.map((i, index) => (
+                    <span key={index} className="">
+                      ▸ {i.ingred} ({i.measure})
+                    </span>
                   ))}
                 </div>
               </div>
-            ) : null}
-          </div>
-          <div className="flex flex-col gap-2 bg-blue-900 text-slate-100 p-3">
-            <span className="font-semibold text-lg">Ingredients:</span>
-            <div className="ingredients">
-              {avoidnulls.map((i, index) => (
-                <span key={index} className="">
-                  ▸ {i.ingred} ({i.measure})
-                </span>
-              ))}
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="flex flex-col gap-2">
-        <span className="font-semibold text-orange-500 text-lg uppercase">
-          Instructions:
-        </span>
-        <ul className="flex flex-col gap-3">
-          {infos.strInstructions.split(".").map((p, index) => (
-            <li key={index} className="">
-              ▸ {p}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+          <div className="flex flex-col gap-2">
+            <span className="font-semibold text-orange-500 text-lg uppercase">
+              Instructions:
+            </span>
+            <ul className="flex flex-col gap-3">
+              {infos.strInstructions.split(".").map((p, index) => (
+                <li key={index} className="">
+                  ▸ {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 const endpoint = import.meta.env.VITE_THEMEALDB_URL;
 
 const fetchCategories = async() => {
