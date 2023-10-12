@@ -1,5 +1,5 @@
 import Carousel from "../others/Carousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Result from "../others/Result";
 import axios from "axios";
 import useResultStore from "../../stores/useResultStore";
@@ -8,6 +8,7 @@ import useEndpoint from "../../stores/useApiEndpoint";
 
 const Home = () => {
   const [searching, setSearching] = useState("");
+  const [searchCall, setSearchCall] = useState("");
   const { updateResults, loading, setLoading } = useResultStore();
   const contents = [<Carousel />, <Result />];
   const [content, setContent] = useState(0);
@@ -31,13 +32,17 @@ const Home = () => {
     }
   };
 
-  const fetchResults = async () => {
-    if (searching !== "") {
-      const getResults = await searchApiCall();
-      updateResults(getResults);
-      setContent(1);
-    }
-  };
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      if (searchCall !== "") {
+        const getResults = await searchApiCall();
+        updateResults(getResults);
+        setContent(1);
+      }
+    };
+    fetchResults();
+  }, [searchCall]);
 
   return (
     <>
@@ -68,7 +73,7 @@ const Home = () => {
                   onChange={(event) => setSearching(event.target.value)}
                 />
                 <button
-                  onClick={fetchResults}
+                  onClick={() => setSearchCall(searching)}
                   className="text-slate-100 bg-blue-900 px-4 text-lg rounded-e-md"
                 >
                   <i className="fa-solid fa-magnifying-glass"></i>

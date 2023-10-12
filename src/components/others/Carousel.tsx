@@ -37,7 +37,7 @@ const Carousel = () => {
       fetch(callCategoriesNames);
     };
     callCategories();
-  }, []);
+  }, [categories]);
 
   const filteredMeals = (data1: string, data2: string, data3: string) => {
     updateCategory(data1);

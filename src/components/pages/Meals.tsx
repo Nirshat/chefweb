@@ -44,7 +44,7 @@ const Meals = () => {
       setMeals(callMealsInfo);
     };
     callMeals();
-  }, []);
+  }, [category]);
 
   const startCooking = (token: string) => {
     updateId(token);

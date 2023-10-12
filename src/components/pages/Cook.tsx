@@ -33,7 +33,7 @@ const Cook = () => {
       updateInfos(callInfos);
     };
     callMealInfo();
-  }, []);
+  }, [id]);
 
   const instruct = [
     {
