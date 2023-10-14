@@ -113,9 +113,10 @@ const useCook = create<State & Actions>((set) => (
     },
     updateInfos: (inst) => set((state) => ({...state, infos:inst})),
     id: localStorage.getItem('idkey') || '',
-    updateId: (token) => {
+    updateId: (token) => set((state) => {
       localStorage.setItem('idkey', token);
-    }
+      return {...state, id:token}
+    })
   }
 ))
 
