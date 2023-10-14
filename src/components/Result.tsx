@@ -42,7 +42,7 @@ const Result = () => {
             ))}
           </div>
         ) : (
-          <div className="min-h-screen"> No results found. </div>
+          <div className="min-h-screen text-lg"> No results found. </div>
         )}
       </div>
     </>
