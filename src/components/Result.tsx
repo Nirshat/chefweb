@@ -1,16 +1,14 @@
-import useCook from "../../stores/useCook";
-import usePages from "../../stores/usePages";
-import useResultStore from "../../stores/useResultStore";
-import '../../../public/scss/loader.scss';
+import useCook from "../stores/useCook";
+import useResultStore from "../stores/useResultStore";
+import '../../public/scss/loader.scss';
+import { Link } from "react-router-dom";
 
 const Result = () => {
   const { updateId } = useCook();
-  const { updatePage } = usePages();
   const { results} = useResultStore();
 
   const startCooking = (token: string) => {
     updateId(token);
-    updatePage(2);
   };
 
   console.log(results);
@@ -24,7 +22,8 @@ const Result = () => {
         {results.length > 0 ? (
           <div className="gap-4 p-4 box-border" id="meals-box">
             {results.map((res, index) => (
-              <div
+              <Link
+                to="/chefweb/cook"
                 key={index}
                 className="card box-border rounded bg-slate-50  border-1 border-slate-100"
                 id="mealbox"
@@ -39,7 +38,7 @@ const Result = () => {
                 <div className="card-body">
                   <p className="card-text font-semibold">{res.strMeal}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (

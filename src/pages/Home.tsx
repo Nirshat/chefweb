@@ -1,15 +1,18 @@
-import Carousel from "../others/Carousel";
+import Carousel from "../components/Carousel";
 import { useEffect, useState } from "react";
-import Result from "../others/Result";
+import Result from "../components/Result";
 import axios from "axios";
-import useResultStore from "../../stores/useResultStore";
-import '../../../public/scss/loader.scss'
-import useEndpoint from "../../stores/useApiEndpoint";
+import useResultStore from "../stores/useResultStore";
+import '../../public/scss/loader.scss'
+import useEndpoint from "../stores/useApiEndpoint";
+import useLoading from "../hooks/useLoading";
+
 
 const Home = () => {
   const [searching, setSearching] = useState("");
   const [searchCall, setSearchCall] = useState("");
-  const { updateResults, loading, setLoading } = useResultStore();
+  const { updateResults } = useResultStore();
+  const {loading, setLoading} = useLoading();
   const contents = [<Carousel />, <Result />];
   const [content, setContent] = useState(0);
 

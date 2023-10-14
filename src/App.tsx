@@ -1,23 +1,19 @@
 
 import './App.scss'
-import Footer from './components/others/Footer'
-import Header from './components/others/Header'
-import Cook from './components/pages/Cook'
-import Home from './components/pages/Home'
-import Meals from './components/pages/Meals'
-import usePages from './stores/usePages'
-
+import Footer from './components/Footer'
+import Header from './components/Header'
+import {BrowserRouter as Router} from 'react-router-dom'
+import AppRoutes from './Routes'
 
 
 const App = () => {
 
-  const {no} = usePages();
-  const pages = [<Home/>, <Meals/>, <Cook/>]
-
   return(
     <>
       <Header/>
-      {pages[no]}
+        <Router>
+          <AppRoutes/>
+        </Router>
       <Footer/>
     </>
   )

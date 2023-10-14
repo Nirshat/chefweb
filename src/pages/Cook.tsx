@@ -1,10 +1,10 @@
-import "../../../public/scss/cook.scss";
+import "../../public/scss/cook.scss";
 import { useEffect } from "react";
 import axios from "axios";
-import useCook from "../../stores/useCook";
-import useEndpoint from "../../stores/useApiEndpoint";
-import useLoading from "../../stores/useLoading";
-import '../../../public/scss/loader.scss'
+import useCook from "../stores/useCook";
+import useEndpoint from "../stores/useApiEndpoint";
+import '../../public/scss/loader.scss'
+import useLoading from "../hooks/useLoading";
 
 
 const Cook = () => {
@@ -185,20 +185,20 @@ const Cook = () => {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div className="flex flex-col gap-2">
-            <span className="font-semibold text-orange-500 text-lg uppercase">
-              Instructions:
-            </span>
-            <ul className="flex flex-col gap-3">
-              {infos.strInstructions.split(".").map((p, index) => (
-                <li key={index} className="">
-                  ▸ {p}
-                </li>
-              ))}
-            </ul>
+              <div className="flex flex-col gap-2">
+                <span className="font-semibold text-orange-500 text-lg uppercase">
+                  Instructions:
+                </span>
+                <ul className="flex flex-col gap-3">
+                  {infos.strInstructions.split(".").map((p, index) => (
+                    <li key={index} className="">
+                      ▸ {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       )}
