@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import fetchFiltered from '../../api-services/filter';
 import axios from "axios";
 import "../../public/scss/meals.scss";
 import useFiltered from "../stores/useFiltered";
@@ -41,9 +40,10 @@ const Meals = () => {
       // fetch mo na
       const callMealsInfo = await fetchFiltered();
       setMeals(callMealsInfo);
+      console.log(category);
     };
     callMeals();
-  }, [category]);
+  }, []); // walang nakalagay so this will triggered every re-renders of the component
 
   const startCooking = (token: string) => {
     updateId(token);
