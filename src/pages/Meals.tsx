@@ -5,7 +5,7 @@ import useFiltered from "../stores/useFiltered";
 import useCook from "../stores/useCook";
 import useEndpoint from "../stores/useApiEndpoint";
 import '../../public/scss/loader.scss'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import useLoading from "../hooks/useLoading";
 
 type State = {
@@ -74,8 +74,8 @@ const Meals = () => {
 
           <div className="gap-4 p-4 box-border" id="meals-box">
             {meals.map((meal, index) => (
-              <Link
-                to="/chefweb/cook"
+              <a
+                href="/chefweb/cook"
                 key={index}
                 className="card box-border rounded bg-slate-50  border-1 border-slate-100"
                 id="mealbox"
@@ -90,7 +90,7 @@ const Meals = () => {
                 <div className="card-body">
                   <p className="card-text font-semibold">{meal.strMeal}</p>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>

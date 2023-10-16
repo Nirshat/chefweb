@@ -3,8 +3,7 @@ import useCategories from "../stores/useCategories";
 import useFiltered from "../stores/useFiltered";
 import axios from 'axios'
 import useEndpoint from "../stores/useApiEndpoint";
-// import useLoading from "../stores/useLoading";
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 
 const Carousel = () => {
   const { categories, fetch } = useCategories();
@@ -49,8 +48,8 @@ const Carousel = () => {
         <div className="text-xl py-2 my-8 font-bold border-b-4 border-blue-800 w-max">CATEGORIES</div>
         <div id="categories">
           {categories.map((item, index) => (
-            <Link
-              to="/chefweb/meals"
+            <a
+              href="/chefweb/meals"
               key={index}
               id="category-box"
               className="cursor-pointer box-border flex flex-col bg-slate-100  border-1 border-slate-200 rounded p-2"
@@ -63,7 +62,7 @@ const Carousel = () => {
             >
               <span id="tag" className="bg-blue-900 text-slate-50 rounded">{item.strCategory}</span>
               <img src={item.strCategoryThumb} alt="" className="h-32" />
-            </Link>
+            </a>
           ))}
         </div>
       </div>
