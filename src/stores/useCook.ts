@@ -51,12 +51,10 @@ type State = {
     strMeasure19: string
     strMeasure20: string
   }
-  id: string
 }
 
 type Actions = {
   updateInfos: (inst:State['infos']) => void
-  updateId: (id:State['id']) => void
 }
 
 
@@ -112,11 +110,6 @@ const useCook = create<State & Actions>((set) => (
       strMeasure20: "",
     },
     updateInfos: (inst) => set((state) => ({...state, infos:inst})),
-    id: localStorage.getItem('idkey') || '',
-    updateId: (token) => set((state) => {
-      localStorage.setItem('idkey', token);
-      return {...state, id: token}
-    })
   }
 ))
 

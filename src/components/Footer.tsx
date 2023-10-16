@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 const Footer = () => {
@@ -5,11 +6,10 @@ const Footer = () => {
     <div className="bg-blue-900">
       <div className="" id="footerbox">
         <div className="flex flex-col">
-          <div className="font-bold footlogo">
+          <Link to="/chefweb/" className="font-bold footlogo">
             <span className="text-slate-100">Chef</span>
-
             <span className="text-orange-400">Web</span>
-          </div>
+          </Link>
           <span className="text-slate-100">Unlock Culinary Creativity, One Recipe at a Time!</span>
           <span className="text-start text-slate-400 text-sm">Developed by Aron Paul Gonzales.All rights reserved</span>
         </div>

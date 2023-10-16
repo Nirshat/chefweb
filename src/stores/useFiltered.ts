@@ -2,12 +2,10 @@ import { create } from "zustand";
 
 
 type State = {
-  category: string
   paliwanag: string
 }
 
 type Action = {
-  updateCategory: (name: State['category']) => void
   updatePaliwanag: (p:State['paliwanag']) => void
 }
 
@@ -17,12 +15,7 @@ type Action = {
 
 const useFiltered = create<State & Action>((set) => {
   return {
-    category: localStorage.getItem('categoryKey') || '' ,
     paliwanag: localStorage.getItem('pKey') || '',
-    updateCategory: (name) => set((state) => {
-      localStorage.setItem('categoryKey', name);
-      return {...state, category: name};
-    }),
     updatePaliwanag: (p) => set((state) => {
       localStorage.setItem('pKey', p);
       return {...state, paliwanag:p};

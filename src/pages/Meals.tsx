@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../../public/scss/meals.scss";
 import useFiltered from "../stores/useFiltered";
-import useCook from "../stores/useCook";
 import useEndpoint from "../stores/useApiEndpoint";
 import '../../public/scss/loader.scss'
-// import {Link} from 'react-router-dom'
 import useLoading from "../hooks/useLoading";
+import { Link, useParams } from "react-router-dom";
 
 type State = {
   strMeal: string;
@@ -15,16 +14,16 @@ type State = {
 };
 
 const Meals = () => {
-  const { category, paliwanag } = useFiltered();
-  const { updateId } = useCook();
+  const { paliwanag } = useFiltered();
   const [meals, setMeals] = useState<State[]>([]);
   const { endpoint } = useEndpoint();
   const { loading, setLoading } = useLoading();
+  const {key} = useParams();
 
   const fetchFiltered = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`${endpoint}filter.php?c=${category}`);
+      const { data } = await axios.get(`${endpoint}filter.php?c=${key}`);
       return data.meals;
     } catch (error) {
       console.log("API CALL FAILED");
@@ -40,14 +39,14 @@ const Meals = () => {
       // fetch mo na
       const callMealsInfo = await fetchFiltered();
       setMeals(callMealsInfo);
-      console.log(category);
     };
     callMeals();
-  }, []); // walang nakalagay so this will triggered every re-renders of the component
+  }, [key]);
 
-  const startCooking = (token: string) => {
-    updateId(token);
-  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [key]);
+
 
   return (
     <>
@@ -66,7 +65,8 @@ const Meals = () => {
           <div className="m-4 border-2 border-blue-800" id="meal-intro">
             <div className="">
               <span id="category-name" className="font-semibold text-blue-900">
-                {category}
+                {key}
+                {/* category name */}
               </span>
               <p className="desc">{paliwanag}</p>
             </div>
@@ -74,12 +74,11 @@ const Meals = () => {
 
           <div className="gap-4 p-4 box-border" id="meals-box">
             {meals.map((meal, index) => (
-              <a
-                href="/chefweb/cook"
+              <Link
+                to={`/chefweb/meal/${meal.idMeal.toLowerCase()}`}
                 key={index}
                 className="card box-border rounded bg-slate-50  border-1 border-slate-100"
                 id="mealbox"
-                onClick={() => startCooking(meal.idMeal)}
               >
                 <img
                   src={meal.strMealThumb}
@@ -90,7 +89,7 @@ const Meals = () => {
                 <div className="card-body">
                   <p className="card-text font-semibold">{meal.strMeal}</p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

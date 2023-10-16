@@ -5,17 +5,19 @@ import useCook from "../stores/useCook";
 import useEndpoint from "../stores/useApiEndpoint";
 import '../../public/scss/loader.scss'
 import useLoading from "../hooks/useLoading";
+import { useParams } from "react-router-dom";
 
 
 const Cook = () => {
-  const { id, infos, updateInfos } = useCook();
+  const { infos, updateInfos } = useCook();
   const { endpoint } = useEndpoint();
   const { loading, setLoading } = useLoading();
+  const {meal} = useParams();
 
   const fetchFiltered = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`${endpoint}lookup.php?i=${id}`);
+      const { data } = await axios.get(`${endpoint}lookup.php?i=${meal}`);
       return data.meals[0];
     } catch (error) {
       console.log("API CALL FAILED");
@@ -33,7 +35,7 @@ const Cook = () => {
       updateInfos(callInfos);
     };
     callMealInfo();
-  }, [id]);
+  }, [meal]);
 
   const instruct = [
     {
