@@ -21,11 +21,11 @@ const useFiltered = create<State & Action>((set) => {
     paliwanag: localStorage.getItem('pKey') || '',
     updateCategory: (name) => set((state) => {
       localStorage.setItem('categoryKey', name);
-      return {...state, category: localStorage.getItem('categoryKey') || ''};
+      return {...state, category: name};
     }),
     updatePaliwanag: (p) => set((state) => {
       localStorage.setItem('pKey', p);
-      return {...state, paliwanag:localStorage.getItem('pKey') || ''};
+      return {...state, paliwanag:p};
     }),
   }
 });
