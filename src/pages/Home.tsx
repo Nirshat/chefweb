@@ -74,6 +74,11 @@ const Home = () => {
                   className="p-3 text-lg focus:outline-none rounded-s-md"
                   value={searching}
                   onChange={(event) => setSearching(event.target.value)}
+                  onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                      setSearchCall(searching);
+                    }
+                  }}
                 />
                 <button
                   onClick={() => setSearchCall(searching)}

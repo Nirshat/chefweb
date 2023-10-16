@@ -1,15 +1,9 @@
-import useCook from "../stores/useCook";
 import useResultStore from "../stores/useResultStore";
 import '../../public/scss/loader.scss';
 import { Link } from "react-router-dom";
 
 const Result = () => {
-  const { updateId } = useCook();
   const { results} = useResultStore();
-
-  const startCooking = (token: string) => {
-    updateId(token);
-  };
 
   console.log(results);
 
@@ -23,11 +17,10 @@ const Result = () => {
           <div className="gap-4 p-4 box-border" id="meals-box">
             {results.map((res, index) => (
               <Link
-                to="/chefweb/cook"
+                to={`/chefweb/meal/${res.idMeal.toLowerCase()}`}
                 key={index}
                 className="card box-border rounded bg-slate-50  border-1 border-slate-100"
                 id="mealbox"
-                onClick={() => startCooking(res.idMeal)}
               >
                 <img
                   src={res.strMealThumb}
