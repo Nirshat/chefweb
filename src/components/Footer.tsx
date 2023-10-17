@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="bg-blue-900">
       <div className="" id="footerbox">
         <div className="flex flex-col">
-          <Link to="/chefweb/" className="font-bold footlogo">
+          <Link to="/" className="font-bold footlogo">
             <span className="text-slate-100">Chef</span>
             <span className="text-orange-400">Web</span>
           </Link>

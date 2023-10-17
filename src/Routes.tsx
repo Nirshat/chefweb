@@ -9,10 +9,10 @@ const AppRoutes = () => {
   
   return (
     <Routes>
-      <Route path='/chefweb' element={<Home/>} />
-      <Route path='/chefweb/meals/:key' element={<Meals/>} />
-      <Route path='/chefweb/meal/:meal' element={<Cook/>} />
-      <Route path='/chefweb/*' element={<PageNotFound/>} />
+      <Route path='/' element={<Home/>} />
+      <Route path='/meals/:key' element={<Meals/>} />
+      <Route path='/meal/:meal' element={<Cook/>} />
+      <Route path='*' element={<PageNotFound/>} />
     </Routes>
   ) 
 }

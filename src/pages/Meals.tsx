@@ -75,7 +75,7 @@ const Meals = () => {
           <div className="gap-4 p-4 box-border" id="meals-box">
             {meals.map((meal, index) => (
               <Link
-                to={`/chefweb/meal/${meal.idMeal.toLowerCase()}`}
+                to={`/meal/${meal.idMeal.toLowerCase()}`}
                 key={index}
                 className="card box-border rounded bg-slate-50  border-1 border-slate-100"
                 id="mealbox"

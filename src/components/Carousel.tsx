@@ -50,7 +50,7 @@ const Carousel = () => {
         <div id="categories">
           {categories.map((item, index) => (
             <Link
-              to={`/chefweb/meals/${item.strCategory.toLowerCase()}`}
+              to={`/meals/${item.strCategory.toLowerCase()}`}
               key={index}
               id="category-box"
               className="cursor-pointer box-border flex flex-col bg-slate-100  border-1 border-slate-200 rounded p-2"
