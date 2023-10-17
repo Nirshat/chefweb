@@ -19,7 +19,7 @@ const AppRoutes = () => {
   ) 
 }
 
-  // :key 
+  // :key or meal
   // ang gamit nito ay para mag store ng mga ilalagay mong routes after /meals/
   // e.g. /meals/1  or /meals/2 or /meals/asdasd
 

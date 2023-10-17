@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import useCategories from "../stores/useCategories";
 import useFiltered from "../stores/useFiltered";
 import axios from 'axios'
-import useEndpoint from "../stores/useApiEndpoint";
+
 import useLoading from "../hooks/useLoading";
 import { Link } from "react-router-dom";
+import { useEndpoint } from "../hooks/useEndpoint";
 
 
 const Carousel = () => {

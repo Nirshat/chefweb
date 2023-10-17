@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../../public/scss/meals.scss";
 import useFiltered from "../stores/useFiltered";
-import useEndpoint from "../stores/useApiEndpoint";
 import '../../public/scss/loader.scss'
 import useLoading from "../hooks/useLoading";
 import { Link, useParams } from "react-router-dom";
+import { useEndpoint } from "../hooks/useEndpoint";
 
 type State = {
   strMeal: string;
