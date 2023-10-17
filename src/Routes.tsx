@@ -1,4 +1,4 @@
-import {Route, Routes} from 'react-router-dom'
+import {Route, Router, Routes} from 'react-router-dom'
 
 import Home from './pages/Home'
 import Meals from './pages/Meals'
@@ -10,8 +10,10 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={<Home/>} />
-      <Route path='/meals/:key' element={<Meals/>} />
-      <Route path='/meal/:meal' element={<Cook/>} />
+      <Route path='/meals/:key'>
+        <Route index element={<Meals/>} />
+        <Route path=':meal' element={<Cook/>} />
+      </Route>
       <Route path='*' element={<PageNotFound/>} />
     </Routes>
   ) 
