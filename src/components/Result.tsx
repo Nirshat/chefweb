@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 const Result = () => {
   const { results} = useResultStore();
 
-  console.log(results);
-
   return (
     <>
       <div className="categories-box">
@@ -17,7 +15,7 @@ const Result = () => {
           <div className="gap-4 p-4 box-border" id="meals-box">
             {results.map((res, index) => (
               <Link
-                to={`/chefweb/meal/${res.idMeal.toLowerCase()}`}
+                to={`/meals/${res.strMeal.toLowerCase()}/${res.idMeal.toLowerCase()}`}
                 key={index}
                 className="card box-border rounded bg-slate-50  border-1 border-slate-100"
                 id="mealbox"

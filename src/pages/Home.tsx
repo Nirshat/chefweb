@@ -4,8 +4,8 @@ import Result from "../components/Result";
 import axios from "axios";
 import useResultStore from "../stores/useResultStore";
 import '../../public/scss/loader.scss'
-import useEndpoint from "../stores/useApiEndpoint";
 import useLoading from "../hooks/useLoading";
+import { useEndpoint } from "../hooks/useEndpoint";
 
 
 const Home = () => {
