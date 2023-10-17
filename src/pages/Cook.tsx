@@ -2,10 +2,10 @@ import "../../public/scss/cook.scss";
 import { useEffect } from "react";
 import axios from "axios";
 import useCook from "../stores/useCook";
-import useEndpoint from "../stores/useApiEndpoint";
 import '../../public/scss/loader.scss'
 import useLoading from "../hooks/useLoading";
 import { useParams } from "react-router-dom";
+import { useEndpoint } from "../hooks/useEndpoint";
 
 
 const Cook = () => {
