@@ -3,6 +3,7 @@ import {Route, Routes} from 'react-router-dom'
 import Home from './pages/Home'
 import Meals from './pages/Meals'
 import Cook from './pages/Cook'
+import PageNotFound from './pages/PageNotFound'
 
 const AppRoutes = () => {
   
@@ -11,6 +12,7 @@ const AppRoutes = () => {
       <Route path='/chefweb' element={<Home/>} />
       <Route path='/chefweb/meals/:key' element={<Meals/>} />
       <Route path='/chefweb/meal/:meal' element={<Cook/>} />
+      <Route path='/chefweb/*' element={<PageNotFound/>} />
     </Routes>
   ) 
 }
