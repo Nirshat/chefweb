@@ -3,10 +3,6 @@
   height:16rem;
 }
 
-.padds{
-  padding:.7rem;
-}
-
 .firstbox{
   display: flex;
   flex-direction: column;
@@ -19,9 +15,6 @@
 
 
 @media only screen and (min-width:767px){
-  .padds{
-    padding:1rem;
-  }
 
   #thumb{
     height:26rem;
@@ -40,9 +33,6 @@
 }
 
 @media only screen and (min-width:1024px){
-  .padds{
-    padding:1.5rem;
-  }
 
   #youtube{
     height:24rem;

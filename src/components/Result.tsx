@@ -1,19 +1,24 @@
 import useResultStore from "../stores/useResultStore";
 import '../../public/scss/loader.scss';
 import { Link } from "react-router-dom";
+import { useMemo } from "react";
 
 const Result = () => {
   const { results} = useResultStore();
 
+  const resultsMemo = useMemo(() => {
+    return results
+  }, [results]);
+
   return (
     <>
-      <div className="categories-box">
-        <div className="text-xl py-2 my-8 font-bold border-b-4 border-blue-800 w-max">
+      <div className="categories-box min-h-screen">
+        <div className="text-xl py-2 my-8 font-bold border-b-4 border-orange-600 w-max">
           RESULTS
         </div>
-        {results.length > 0 ? (
-          <div className="gap-4 p-4 box-border" id="meals-box">
-            {results.map((res, index) => (
+        {resultsMemo.length > 0 ? (
+          <div className="gap-4 box-border" id="meals-box">
+            {resultsMemo.map((res, index) => (
               <Link
                 to={`/meals/${res.strMeal.toLowerCase()}/${res.idMeal.toLowerCase()}`}
                 key={index}

@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import "../../public/scss/meals.scss";
 import useFiltered from "../stores/useFiltered";
-import '../../public/scss/loader.scss'
-import useLoading from "../hooks/useLoading";
+import "../../public/scss/loader.scss";
 import { Link, useParams } from "react-router-dom";
 import { useEndpoint } from "../hooks/useEndpoint";
+import { useLoading } from "../stores/useLoading";
 
 type State = {
   strMeal: string;
@@ -18,13 +18,13 @@ const Meals = () => {
   const [meals, setMeals] = useState<State[]>([]);
   const { endpoint } = useEndpoint();
   const { loading, setLoading } = useLoading();
-  const {key} = useParams();
+  const { key } = useParams();
 
-  const fetchFiltered = async () => {
+  const fetchFiltered = useCallback(async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`${endpoint}filter.php?c=${key}`);
-      return data.meals;
+      const response = await axios.get(`${endpoint}filter.php?c=${key}`);
+      return response.data.meals;
     } catch (error) {
       console.log("API CALL FAILED");
     } finally {
@@ -32,25 +32,27 @@ const Meals = () => {
         setLoading(false);
       }, 1000);
     }
-  };
+  }, [key]);
 
   useEffect(() => {
     const callMeals = async () => {
-      // fetch mo na
       const callMealsInfo = await fetchFiltered();
       setMeals(callMealsInfo);
     };
     callMeals();
   }, [key]);
 
+  const dishesMemo = useMemo(() => {
+    return meals;
+  }, [meals]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [key]);
 
-
   return (
     <>
-      {loading === true ? (
+      {loading ? (
         <div className="box-border min-h-screen flex flex-col justify-center items-center">
           <section className="dots-container">
             <div className="dot"></div>
@@ -62,9 +64,9 @@ const Meals = () => {
         </div>
       ) : (
         <div className="min-h-screen flex flex-col gap-8">
-          <div className="m-4 border-2 border-blue-800" id="meal-intro">
+          <div className="border-2 border-slate-800" id="meal-intro">
             <div className="">
-              <span id="category-name" className="font-semibold text-blue-900">
+              <span id="category-name" className="font-semibold text-slate-600">
                 {key}
                 {/* category name */}
               </span>
@@ -72,8 +74,8 @@ const Meals = () => {
             </div>
           </div>
 
-          <div className="gap-4 p-4 box-border" id="meals-box">
-            {meals.map((meal, index) => (
+          <div className="box-border" id="meals-box">
+            {dishesMemo.map((meal, index) => (
               <Link
                 to={`/meals/${key}/${meal.idMeal.toLowerCase()}`}
                 key={index}

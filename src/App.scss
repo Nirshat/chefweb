@@ -1,18 +1,9 @@
 // mobile
 
-#home-bg{
-  background-image: url('../public/assets/meal9.jpg');
-  background-size:cover;
-  background-repeat: no-repeat;
-  padding:5rem 1rem;
+.main-box{
+  width:92%;
+  margin: auto;
 }
-
-// #headerbox{
-//   background: rgb(70, 70, 85);
-//   backdrop-filter: blur( 4px );
-//   -webkit-backdrop-filter: blur( 4px );
-//   padding:1rem;
-// }
 
 #searchbox{
   display:grid;
@@ -24,9 +15,6 @@
   font-size:28px;
 }
 
-.categories-box{
-  padding:.6rem;
-}
 #categories{
   display:grid;
   grid-template-columns: repeat(2, 1fr);
@@ -51,19 +39,14 @@
   font-weight: 600;
 }
 
-#headerbox{
-  padding:1rem 1rem;
-}
-
 
 #footerbox{
-  padding:3rem 1rem;
   display: flex;
   flex-direction: column;
   gap:1.5rem;
 
   .footlogo{
-    font-size:28px;
+    font-size:25px;
   }
 }
 
@@ -75,9 +58,6 @@
     padding:8rem 1rem;
   }
 
-  .categories-box{
-    padding:1.5rem;
-  }
   #categories{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -93,14 +73,10 @@
 
   
   #footerbox{
-    padding:3rem 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap:2rem;
-    .footlogo{
-      font-size:30px;
-    }
   }
 }
 
@@ -108,22 +84,18 @@
 
 // Desktop
 @media only screen and (min-width:1024px){
-  #headerbox{
-    padding:1.2rem 3rem;
+  .main-box{
+    width:80%;
   }
 
   #categories{
     display:grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap:2rem;
   }
 
   #footerbox{
-    padding:3rem 8rem;
     display: flex;
     justify-content: space-between;
-
-    .footlogo{
-      font-size:32px;
-    }
   }
 }

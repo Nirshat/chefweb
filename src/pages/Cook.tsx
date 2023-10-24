@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import axios from "axios";
 import useCook from "../stores/useCook";
 import '../../public/scss/loader.scss'
-import useLoading from "../hooks/useLoading";
 import { useParams } from "react-router-dom";
 import { useEndpoint } from "../hooks/useEndpoint";
+import { useLoading } from "../stores/useLoading";
 
 
 const Cook = () => {
@@ -129,6 +129,10 @@ const Cook = () => {
       i.measure != ""
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [meal]);
+
   return (
     <>
       {loading === true ? (
@@ -142,14 +146,14 @@ const Cook = () => {
           </section>
         </div>
       ) : (
-        <div className="min-h-screen flex flex-col gap-8 padds">
+        <div className="min-h-screen flex flex-col gap-8">
           <div className="firstbox">
             <div className="">
               <img className="rounded" id="thumb" src={infos.strMealThumb} />
             </div>
 
             <div className="flex flex-col gap-3">
-              <div className="font-bold text-3xl text-blue-700 border-b border-blue-900 py-3">
+              <div className="font-bold text-3xl text-orange-600 border-b border-slate-700 py-3">
                 {infos.strMeal}
               </div>
               <div className="flex flex-col uppercase gap-1">
@@ -167,7 +171,7 @@ const Cook = () => {
                     <div className="flex flex-row gap-2">
                       {infos.strTags.split(",").map((tag, index) => (
                         <span
-                          className="border-1 border-blue-900 px-1 text-sm"
+                          className="border-1 border-orange-500 px-1 text-sm"
                           key={index}
                         >
                           {tag}
@@ -177,7 +181,7 @@ const Cook = () => {
                   </div>
                 ) : null}
               </div>
-              <div className="flex flex-col gap-2 bg-blue-900 text-slate-100 p-3">
+              <div className="flex flex-col gap-2 bg-orange-600 rounded text-slate-100 p-3">
                 <span className="font-semibold text-lg">Ingredients:</span>
                 <div className="ingredients">
                   {avoidnulls.map((i, index) => (
@@ -189,7 +193,7 @@ const Cook = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <span className="font-semibold text-orange-500 text-lg uppercase">
+                <span className="font-semibold text-slate-700 text-lg uppercase">
                   Instructions:
                 </span>
                 <ul className="flex flex-col gap-3">
