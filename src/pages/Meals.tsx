@@ -18,7 +18,7 @@ const Meals = () => {
   const [meals, setMeals] = useState<State[]>([]);
   const { endpoint } = useEndpoint();
   const { loading, setLoading } = useLoading();
-  const { key } = useParams();
+  const { key } = useParams(); // key is a variable na naka refer sa item na nasa loob ng object (useParams) which is sya yung last parameter sa url
 
   const fetchFiltered = useCallback(async () => {
     try {
