@@ -22,3 +22,5 @@ export const useLoading = create<State & Actions>((set) => {
   }
 
 })
+
+// always use set() for dynamic state from the store

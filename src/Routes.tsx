@@ -13,7 +13,7 @@ const AppRoutes = () => {
       <Route path='/' element={<Home/>} />
       <Route path='/search' element={<Searching/>} />
       <Route path='/meals/:key'>
-        <Route index element={<Meals/>} />
+        <Route index element={<Meals/>} /> {/* default */}
         <Route path=':meal' element={<Cook/>} />
       </Route>
       <Route path='*' element={<PageNotFound/>} />
